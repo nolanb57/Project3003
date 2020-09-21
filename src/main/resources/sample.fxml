@@ -16,9 +16,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" fx:controller="Controller" xmlns="http://javafx.com/javafx/11.0.1"
-         xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <tabs>
         <Tab fx:id="ProduceTab" text="Produce">
             <content>
@@ -26,7 +24,7 @@
                     <children>
                         <ListView layoutX="55.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
                         <Label layoutX="113.0" layoutY="61.0" text="Choose Product" />
-                        <ComboBox layoutX="291.0" layoutY="86.0" prefWidth="150.0" />
+                        <ComboBox fx:id="cmbQuantity" layoutX="291.0" layoutY="86.0" prefWidth="150.0" />
                         <Label layoutX="322.0" layoutY="61.0" text="Choose Quantity" />
                         <Button fx:id="recordproduction" layoutX="309.0" layoutY="186.0" mnemonicParsing="false" onAction="#recordproductiondisplay" text="Record Production" />
                     </children></AnchorPane>
@@ -47,11 +45,11 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <TextField />
+                                <TextField fx:id="productName" />
                                 <TextField GridPane.columnIndex="1" />
-                                <TextField GridPane.rowIndex="1" />
+                                <TextField fx:id="manufacturerName" GridPane.rowIndex="1" />
                                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <ChoiceBox prefWidth="150.0" GridPane.rowIndex="2" />
+                                <ChoiceBox fx:id="cmbType" prefWidth="150.0" GridPane.rowIndex="2" />
                                 <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>

@@ -1,7 +1,5 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 
 import java.sql.*;
 
@@ -23,18 +21,40 @@ public class Controller {
     private Tab ProductionLogTab;
 
     @FXML
+    private ComboBox<String> cmbQuantity;
+
+    @FXML
     private Label lblOutput;
+
+    @FXML
+    private TextField productName;
+
+    @FXML
+    private TextField manufacturerName;
+
+    @FXML
+    private ChoiceBox<String> cmbType;
 
     public void sayHello() {
         lblOutput.setText("Hello FXML!");
 
+
     }
 
     public void initialize(){
-        connectToDb();
+        //connectToDb();
+        cmbQuantity.setEditable(true);
+        for(int i=1;i<=10;i++){
+            cmbQuantity.getItems().add(String.valueOf(i));
+        }
+        cmbQuantity.getSelectionModel().selectFirst();
+        cmbType.getSelectionModel().selectFirst();
+        cmbType.getItems().add(String.valueOf("AUDIO"));
+        cmbType.getItems().add(String.valueOf("VIDEO"));
+        cmbType.getItems().add(String.valueOf("ELECTRICAL"));
     }
 
-    public static void connectToDb(){
+    public void connectToDb(){
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:./res/HR";
 
@@ -43,6 +63,7 @@ public class Controller {
         final String PASS = "";
         Connection conn = null;
         Statement stmt = null;
+
 
         try {
             // STEP 1: Register JDBC driver
@@ -53,16 +74,25 @@ public class Controller {
 
             //STEP 3: Execute a query
             stmt = conn.createStatement();
+            String productNameData = productName.getText();
+            String manufacturerNameData = manufacturerName.getText();
+            String productType = cmbType.getValue();
+            String insertSql = "INSERT INTO PRODUCT (NAME, TYPE, MANUFACTURER)" +
+            "VALUES ('" + productNameData + "','" + productType + "','" + manufacturerNameData + "')";
+            stmt.executeUpdate(insertSql);
 
 
-            //String sql = "SELECT * FROM PRODUCTS";
+            String sql = "SELECT * FROM PRODUCT";
 
-            //ResultSet rs = stmt.executeQuery(sql);
-            //while (rs.next()) {
-                //System.out.println(rs.getString(1));
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("Product ID: " + rs.getString(1));
+                System.out.println("Product Name: " + rs.getString(2));
+                System.out.println("Product Type: " + rs.getString(3));
+                System.out.println("Product Manufacturer: " + rs.getString(4));
 
 
-            //}
+            }
 
             // STEP 4: Clean-up environment
             stmt.close();
@@ -83,7 +113,8 @@ public class Controller {
     }
 
     public void addproduct(javafx.event.ActionEvent actionEvent) {
-        System.out.println("Hello");
+
+        connectToDb();
     }
 }
 
