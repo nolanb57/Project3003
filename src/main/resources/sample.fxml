@@ -22,7 +22,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <ListView layoutX="55.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="producelist" layoutX="55.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
                         <Label layoutX="113.0" layoutY="61.0" text="Choose Product" />
                         <ComboBox fx:id="cmbQuantity" layoutX="291.0" layoutY="86.0" prefWidth="150.0" />
                         <Label layoutX="322.0" layoutY="61.0" text="Choose Quantity" />
@@ -57,10 +57,12 @@
                         <Label layoutX="17.0" layoutY="105.0" text="Manufacturer" />
                         <Label layoutX="27.0" layoutY="131.0" text="Item Type" />
                         <Button fx:id="addproduct" layoutX="441.0" layoutY="101.0" mnemonicParsing="false" onAction="#addproduct" text="Add Product" />
-                        <TableView layoutX="88.0" layoutY="182.0" prefHeight="175.0" prefWidth="425.0">
+                        <TableView fx:id="tableview" layoutX="88.0" layoutY="182.0" prefHeight="175.0" prefWidth="425.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="C1" />
-                                <TableColumn prefWidth="75.0" text="C2" />
+                                <TableColumn fx:id="productid" prefWidth="85.0" text="Product ID" />
+                                <TableColumn fx:id="prodname" prefWidth="105.0" text="Product Name" />
+                                <TableColumn fx:id="manufacturer" prefWidth="95.0" text="Manufacturer" />
+                                <TableColumn fx:id="itemtype" prefWidth="85.0" text="Item Type" />
                             </columns>
                         </TableView>
                         <Label layoutX="255.0" layoutY="165.0" text="Existing Products" />
@@ -71,7 +73,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <TextArea layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
+                        <TextArea fx:id="textArea" layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
                     </children>
                 </AnchorPane>
             </content>
