@@ -9,5 +9,5 @@ with the ability to look up different products
 ---Links---
 Professor Vanselow's YouTube
 https://www.youtube.com/channel/UC8LgDTOCG0RfByLNH3lJvZQ
-I used professors YouTube for most of my troubles as he has walkthroughs 
+I used professors YouTube for most of my troubles as he has walk-throughs 
 pertaining to exactly what we were doing.

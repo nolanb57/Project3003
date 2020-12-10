@@ -8,71 +8,151 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+
+ * Controller for the program.
+
+ * Calls program essential functions and formats everything.
+
+ * @author Nolan Birmingham
+
+ */
 public class Controller {
 
+    /**
+
+     * The produce tab.
+
+     */
     @FXML
     private Tab ProduceTab;
+    /**
 
+     * Button used to record production.
+
+     */
     @FXML
-    private Button recordproduction;
+    private Button recordProduction;
+    /**
 
+     * Tab for the product line.
+
+     */
     @FXML
     private Tab ProductLineTab;
+    /**
 
+     * Button to add product to the records.
+
+     */
     @FXML
-    private Button addproduct;
+    private Button addProduct;
+    /**
 
+     * Tab for the production log.
+
+     */
     @FXML
     private Tab ProductionLogTab;
+    /**
 
+     * Combobox quantity picker.
+
+     */
     @FXML
     private ComboBox<String> cmbQuantity;
+    /**
 
+     * Label to output text.
+
+     */
     @FXML
     private Label lblOutput;
+    /**
 
+     * Text field.
+
+     */
     @FXML
     private TextField productName;
+    /**
 
+     * Text field.
+
+     */
     @FXML
     private TextField manufacturerName;
+    /**
 
+     * Choice box for a type.
+
+     */
     @FXML
     private ChoiceBox<String> cmbType;
+    /**
 
+     * Tableview for production record.
+
+     */
     @FXML
     private TableView<Widget> tableview;
+    /**
 
+     * Table column that holds the item type.
+
+     */
     @FXML
-    private TableColumn itemtype;
+    private TableColumn itemType;
+    /**
 
+     * Table column that holds the manufacturer.
+
+     */
     @FXML
     private TableColumn manufacturer;
+    /**
 
+     * Table column that holds the product name.
+
+     */
     @FXML
-    private TableColumn prodname;
+    private TableColumn prodName;
+    /**
 
+     * Table column that holds the product id.
+
+     */
     @FXML
-    private TableColumn productid;
+    private TableColumn productID;
+    /**
 
+     * Listview to display the produced items.
+
+     */
     @FXML
-    private ListView producelist;
+    private ListView produceList;
+    /**
 
+     * A list.
+
+     */
     @FXML
     public List list;
+    /**
 
+     * Text area in the GUI.
+
+     */
     @FXML
     private TextArea textArea;
 
+    /**
 
-    public void sayHello() {
-        lblOutput.setText("Hello FXML!");
+     * Initializes the gui and sets essential elements to start.
 
-
-    }
-
+     */
     public void initialize(){
-        //connectToDb();
+        //Population of the combo box upon program startup
         cmbQuantity.setEditable(true);
         for(int i=1;i<=10;i++){
             cmbQuantity.getItems().add(String.valueOf(i));
@@ -82,20 +162,27 @@ public class Controller {
         cmbType.getItems().add(String.valueOf("AUDIO"));
         cmbType.getItems().add(String.valueOf("VIDEO"));
         cmbType.getItems().add(String.valueOf("ELECTRICAL"));
-
+        // Call to set up multimedia controls
         testMultimedia();
-
+        // ObservableList Creation
         ObservableList<Widget> one = setupProductLine();
-        productid.setCellValueFactory(new PropertyValueFactory("id"));
-        prodname.setCellValueFactory(new PropertyValueFactory("Name"));
+        productID.setCellValueFactory(new PropertyValueFactory("id"));
+        prodName.setCellValueFactory(new PropertyValueFactory("Name"));
         manufacturer.setCellValueFactory(new PropertyValueFactory("Manufacturer"));
-        itemtype.setCellValueFactory(new PropertyValueFactory("type"));
+        itemType.setCellValueFactory(new PropertyValueFactory("type"));
         tableview.setItems(one);
 
-        producelist.getItems().addAll("Name: iPhone" + "\n Manufacturer: Apple" + "\nType: " + ItemType.VISUAL, "Name: Pixel 3" + "\n Manufacturer: Google" + "\nType: " + ItemType.VISUAL);
+
+
+        produceList.getItems().addAll("Name: iPhone" + "\n Manufacturer: Apple" + "\nType: " + ItemType.VISUAL, "Name: Pixel 3" + "\n Manufacturer: Google" + "\nType: " + ItemType.VISUAL);
 
     }
 
+    /**
+
+     * called upon recording of a product that will connect the program to the database.
+
+     */
     public void connectToDb(){
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:./res/HR";
@@ -149,9 +236,11 @@ public class Controller {
 
     }
 
-    //ObservableList<Product> productLine = FXCollections.observableList(new Product(txtProductName.getText()),
-    //txtManufacturer.getText(), chbItemType.getValue());
+    /**
 
+     * Multimedia Function non essential to program.
+
+     */
     public static void testMultimedia() {
 
         AudioPlayer newAudioProduct = new AudioPlayer("DP-X1A", "Onkyo",
@@ -187,7 +276,13 @@ public class Controller {
 
     }
 
+    /**
+
+     * Sets the product line in the program.
+
+     */
     public static ObservableList<Widget> setupProductLine() {
+        String recordProduction;
         return FXCollections.observableArrayList(
                 new Widget("iPhone","Apple", ItemType.VISUAL),
                 new Widget("AirPods","Apple",ItemType.AUDIO),
@@ -196,11 +291,16 @@ public class Controller {
                 new Widget("test", "test",ItemType.AUDIO_MOBILE));
     }
 
-    public void recordproductiondisplay(javafx.event.ActionEvent actionEvent) {
+    /**
+
+     * Button handling method to record production upon use.
+
+     */
+    public void recordProductionDisplay(javafx.event.ActionEvent actionEvent) {
 
         String textAreaString = "";
 
-        ObservableList listOfItems = producelist.getSelectionModel().getSelectedItems();
+        var listOfItems = produceList.getSelectionModel().getSelectedItems();
 
         for(Object item : listOfItems){
             textAreaString += String.format("%s%n", (String) item);
@@ -208,7 +308,12 @@ public class Controller {
         textArea.setText(textAreaString);
     }
 
-    public void addproduct(javafx.event.ActionEvent actionEvent) {
+    /**
+
+     * Button handling method to add a product upon use.
+
+     */
+    public void addProduct(javafx.event.ActionEvent actionEvent) {
 
         connectToDb();
     }

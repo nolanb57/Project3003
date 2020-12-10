@@ -1,29 +1,81 @@
 public class Screen implements ScreenSpec{
 
-    String resolution;
-    int refreshrate;
-    int responsetime;
+    /**
 
+     * The resolution for the monitor.
+
+     */
+    String resolution;
+    /**
+
+     * The refresh rate for the monitor.
+
+     */
+    int refreshRate;
+    /**
+
+     * The response time for the monitor.
+
+     */
+    int responseTime;
+
+    /**
+
+     * Getter to get the resolution.
+
+     * @return returns the resolution of the screen.
+
+     */
     public String getResolution(){
         return resolution;
     }
 
+    /**
+
+     * Getter to get the refresh rate.
+
+     * @return returns the refresh rate of the screen.
+
+     */
     public int getRefreshRate(){
-        return refreshrate;
+        return refreshRate;
     }
 
+    /**
+
+     * Getter to get the response time.
+
+     * @return returns the response time of the screen.
+
+     */
     public int getResponseTime(){
-        return responsetime;
+        return responseTime;
     }
 
+    /**
+
+     * Prints screen details as a string.
+
+     * @return Returns a string with screen details.
+
+     */
     public String toString(){
         return "Screen:" + "\nResolution: " + getResolution() + "\nRefresh rate: " + getRefreshRate() + "\nResponse time: " + getResponseTime();
     }
 
-    Screen(String resolution, int refreshrate, int responsetime){
+    /**
+
+     * Constructor to create a screen.
+
+     * @param responseTime the response time of the screen.
+     * @param refreshRate the refresh rate of the screen.
+     * @param resolution resolution of the screen.
+
+     */
+    Screen(String resolution, int refreshRate, int responseTime){
         this.resolution = resolution;
-        this.refreshrate = refreshrate;
-        this.responsetime = responsetime;
+        this.refreshRate = refreshRate;
+        this.responseTime = responseTime;
     }
 
 }
